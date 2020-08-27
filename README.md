@@ -1,8 +1,8 @@
 
 ## Flutter Music Web App
 
-A new Flutter web project for personal resume & cv card.
-Still under develope.
+A new Flutter web project for music website.
+Still under developement.
 
 ### Packages:
 List of used packages:
