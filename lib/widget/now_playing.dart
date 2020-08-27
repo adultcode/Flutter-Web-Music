@@ -12,7 +12,6 @@ import 'package:web_music/model/music_model.dart';
 import 'package:web_music/util/MyColor.dart';
 import 'package:web_music/util/style.dart';
 import 'dart:js' as js;
-import 'package:just_audio/just_audio.dart';
 
 class NowPlaying extends StatefulWidget {
   @override

@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   audioplayers: ^0.15.1
-  just_audio: ^0.2.2
+  just_audio: ^0.1.10
   provider: ^4.0.2
   rxdart: ^0.24.1
   path_provider: ^1.6.11
@@ -57,6 +57,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - web/img/
+    - web/img/ssd.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
