@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_music/util/MyColor.dart';
+import 'package:web_music/util/size.dart';
 import 'package:web_music/util/style.dart';
 
 import 'meni_item.dart';
@@ -47,25 +48,44 @@ class _MenuItemFirstState extends State<MenuItemFirst> {
     }
 
   }
+
+  Widget AppStore(){
+    if(ScreenSize.width.toInt()<959){
+      return Container(
+          padding: EdgeInsets.all(25.0),
+          margin: EdgeInsets.only(top: 30.0),
+          child: Image.network('web/img/button.PNG',fit: BoxFit.fill,)
+      );
+    }else{
+      return Container(
+          padding: EdgeInsets.all(45.0),
+          margin: EdgeInsets.only(top: 30.0),
+          child: Image.network('web/img/button.PNG',fit: BoxFit.fill,)
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 10.0),
-            child: InkWell(
-              child: MenuItem(
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 10.0),
+              child: InkWell(
+                child: MenuItem(
 
-                  item_title[0],
-                  Icons.home,
-                  item_state[0]==false?Text_Style.id_menuitem:Text_Style.id_menuitem_active,
-                  item_state[0]==false?MyColor.id_color:MyColor.blue_color
+                    item_title[0],
+                    Icons.home,
+                    item_state[0]==false?Text_Style.id_menuitem:Text_Style.id_menuitem_active,
+                    item_state[0]==false?MyColor.id_color:MyColor.blue_color
+                ),
+                onTap:  (){
+                  onTapMenu(0);
+                },
               ),
-              onTap:  (){
-                onTapMenu(0);
-              },
             ),
           ),
           Container(
@@ -129,15 +149,15 @@ class _MenuItemFirstState extends State<MenuItemFirst> {
             ),
           ),
           // my music
-          Container(
-            width: 100.0,
-            margin: EdgeInsets.only(top: 20.0,left: 25.0),
-            child: Text(
-              "My Music",
-              style: Text_Style.menu_my_music_style,
-              textAlign: TextAlign.left,
-            )
-          ),
+//          Container(
+//            width: 100.0,
+//            margin: EdgeInsets.only(top: 20.0,left: 25.0),
+//            child: Text(
+//              "My Music",
+//              style: Text_Style.menu_my_music_style,
+//              textAlign: TextAlign.left,
+//            )
+//          ),
           Container(
             margin: EdgeInsets.only(top: 16.0),
             child: InkWell(
@@ -168,11 +188,7 @@ class _MenuItemFirstState extends State<MenuItemFirst> {
               },
             ),
           ),
-          Container(
-            padding: EdgeInsets.all(45.0),
-            margin: EdgeInsets.only(top: 30.0),
-            child: Image.network('web/img/button.PNG',fit: BoxFit.fill,)
-          ),
+          AppStore(),
         ],
       ),
     );

@@ -4,6 +4,8 @@ import 'package:web_music/util/list_repository.dart';
 import 'package:web_music/util/style.dart';
 import 'package:web_music/widget/popular_item.dart';
 
+import 'now_playing.dart';
+
 class MostPopular extends StatefulWidget {
   @override
   _MostPopularState createState() => _MostPopularState();
@@ -36,7 +38,14 @@ class _MostPopularState extends State<MostPopular> {
 
                   itemCount:  4,
               itemBuilder: (context,index){
-                    return PopularItem(musiclist[index]);
+                    return InkWell(
+                        //child: PopularItem(musiclist[index])
+                      child:Container(child:Text('sdsdsd'))
+                    ,onTap: (){
+                   //   /NowPlayState.ChangeMusic(musiclist[index]);
+                      print("hey: ${musiclist[index].img}");
+                    },
+                    );
               },
             )
           ),

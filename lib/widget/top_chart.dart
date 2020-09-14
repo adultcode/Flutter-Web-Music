@@ -5,6 +5,7 @@ import 'package:web_music/bloc/music_bloc.dart';
 import 'package:web_music/model/music_model.dart';
 import 'package:web_music/util/MyColor.dart';
 import 'package:web_music/util/list_repository.dart';
+import 'package:web_music/util/size.dart';
 import 'package:web_music/util/style.dart';
 import 'package:web_music/widget/billboard_item.dart';
 import 'package:web_music/widget/now_playing.dart';
@@ -45,6 +46,121 @@ class _TopChartState extends State<TopChart> {
   @override
   Widget build(BuildContext context) {
 
+
+    Widget BillBoardResponsive(){
+      if(ScreenSize.width.toInt()<ScreenSize.mainpage_resize){
+          return  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text("Billboard TopChart",style: Text_Style.billboard_style_small,)
+                ],
+              ),
+              Row(
+                children: [
+
+                  InkWell(child: Icon(Icons.arrow_back_ios,color: MyColor.grey_color,size: 17.0,),onTap: (){
+                    _scrollController.jumpTo(_scrollController.position.pixels - next_pos);
+                    if(bottom==false){
+
+                      top=false;
+                    }
+
+
+                  },),
+                  SizedBox(width: 8.0,),
+                  InkWell(child: Icon(Icons.arrow_forward_ios,color: MyColor.grey_color,size: 17.0,),onTap: (){
+                    _scrollController.jumpTo(_scrollController.position.pixels + next_pos);
+
+
+                  },),
+                  SizedBox(width: 18.0,),
+                ],
+              )
+            ],
+          );
+
+      }else{
+
+        return  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Text("Billboard TopChart",style: Text_Style.billboard_style,)
+              ],
+            ),
+            Row(
+              children: [
+
+                InkWell(child: Icon(Icons.arrow_back_ios,color: MyColor.grey_color,size: 19.0,),onTap: (){
+                  _scrollController.jumpTo(_scrollController.position.pixels - next_pos);
+                  if(bottom==false){
+
+                    top=false;
+                  }
+
+
+                },),
+                SizedBox(width: 10.0,),
+                InkWell(child: Icon(Icons.arrow_forward_ios,color: MyColor.grey_color,size: 19.0,),onTap: (){
+                  _scrollController.jumpTo(_scrollController.position.pixels + next_pos);
+
+
+                },),
+                SizedBox(width: 20.0,),
+              ],
+            )
+          ],
+        );
+      }
+
+    }
+
+    Widget MusicListResponsive(){
+      if(ScreenSize.width.toInt()<570){
+       return Container(
+          padding: EdgeInsets.only(right: 15.0),
+
+          height: 190.0,
+          child: ListView.builder(
+            controller: _scrollController,
+            shrinkWrap: true,
+
+            scrollDirection: Axis.horizontal,
+            itemCount: musiclist.length,
+            itemBuilder: (context,index){
+              return InkWell(child: BillBoardItem(musiclist[index]),
+                onTap: (){
+                  NowPlayState.ChangeMusic(musiclist[index]);
+                },);
+            },
+          ),
+        );
+      }else{
+      return  Container(
+          padding: EdgeInsets.only(right: 15.0),
+
+          height: 210.0,
+          child: ListView.builder(
+            controller: _scrollController,
+            shrinkWrap: true,
+
+            scrollDirection: Axis.horizontal,
+            itemCount: musiclist.length,
+            itemBuilder: (context,index){
+              return InkWell(child: BillBoardItem(musiclist[index]),
+                onTap: (){
+                  NowPlayState.ChangeMusic(musiclist[index]);
+                },);
+            },
+          ),
+        );
+      }
+    }
+
+
     return Container(
       margin: EdgeInsets.only(top: 22.0),
       child: Column(
@@ -52,60 +168,11 @@ class _TopChartState extends State<TopChart> {
         children: [
 
           //title and arrows
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Text("Billboard TopChart",style: Text_Style.billboard_style,)
-                ],
-              ),
-              Row(
-                children: [
-
-                  InkWell(child: Icon(Icons.arrow_back_ios,color: MyColor.grey_color,size: 19.0,),onTap: (){
-                    _scrollController.jumpTo(_scrollController.position.pixels - next_pos);
-                    if(bottom==false){
-
-                    top=false;
-                    }
-
-
-                  },),
-                  SizedBox(width: 10.0,),
-                  InkWell(child: Icon(Icons.arrow_forward_ios,color: MyColor.grey_color,size: 19.0,),onTap: (){
-                    _scrollController.jumpTo(_scrollController.position.pixels + next_pos);
-
-
-                  },),
-                  SizedBox(width: 20.0,),
-                ],
-              )
-            ],
-          ),
+         BillBoardResponsive(),
           //listview
           SizedBox(height: 14.0,),
-          //BillBoardItem()
-          Container(
-            padding: EdgeInsets.only(right: 15.0),
-           //   width: 400.0,
-            height: 210.0,
-            child: ListView.builder(
-              controller: _scrollController,
-                    shrinkWrap: true,
 
-              scrollDirection: Axis.horizontal,
-              itemCount: musiclist.length,
-              itemBuilder: (context,index){
-                      return InkWell(child: BillBoardItem(musiclist[index]),
-                      onTap: (){
-                       // print(musiclist[index].artist);
-                      //  _bloc.onFirsttMusicEvent(musiclist[index]);
-                        NowPlayState.ChangeMusic(musiclist[index]);
-                      },);
-              },
-            ),
-          )
+         MusicListResponsive()
         ],
       ),
 
