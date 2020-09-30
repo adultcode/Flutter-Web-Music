@@ -1,5 +1,5 @@
 
-## Flutter Music Web App
+## Flutter - Amazing Music Web App
 
 A new Flutter web project for music website.
 Still under developement.
