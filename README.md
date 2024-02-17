@@ -5,4 +5,4 @@ project date: 2019
 -package: RxDart
 
 
-![flutter-web-music](https://github.com/adultcode/Flutter-Web-Music/assets/17101519/2f49bc6a-3112-4076-81b9-da55e8812684)
+![flutter-web-music](https://github.com/adultcode/Flutter-Web-Music/assets/17101519/6a41e4f2-d2c1-411d-8395-12a9481af006)
